@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.studentmanagement.controller.LoginController">
+   <center>
+      <StackPane styleClass="auth-container">
+         <VBox fx:id="loginContainer" alignment="CENTER" maxWidth="450.0" spacing="25.0" styleClass="auth-form">
+            <padding>
+               <Insets bottom="40.0" left="40.0" right="40.0" top="40.0" />
+            </padding>
+            
+            <!-- Header -->
+            <VBox alignment="CENTER" spacing="10.0">
+               <Label styleClass="auth-title" text="Student Management System" textAlignment="CENTER" />
+               <Label styleClass="auth-subtitle" text="Sign in to access your learning dashboard" textAlignment="CENTER" wrapText="true" />
+            </VBox>
+
+            <!-- Login Form -->
+            <VBox spacing="20.0">
+               <!-- Admission Number Field -->
+               <VBox spacing="8.0" styleClass="form-field">
+                  <Label styleClass="field-label" text="Admission Number" />
+                  <TextField fx:id="admissionNumberField" promptText="Enter your admission number" styleClass="custom-text-field" />
+               </VBox>
+
+               <!-- Password Field -->
+               <VBox spacing="8.0" styleClass="form-field">
+                  <Label styleClass="field-label" text="Password" />
+                  <PasswordField fx:id="passwordField" promptText="Enter your password" styleClass="custom-password-field" />
+               </VBox>
+
+               <!-- Error Message -->
+               <Label fx:id="errorLabel" styleClass="error-message" textAlignment="CENTER" visible="false" wrapText="true" />
+
+               <!-- Loading Indicator -->
+               <ProgressIndicator fx:id="loadingIndicator" maxHeight="30.0" maxWidth="30.0" visible="false" />
+            </VBox>
+
+            <!-- Buttons -->
+            <VBox spacing="15.0">
+               <Button fx:id="loginButton" maxWidth="Infinity" styleClass="primary-button" text="Sign In" />
+               <Button fx:id="signupButton" maxWidth="Infinity" styleClass="secondary-button" text="New Student? Sign Up" />
+            </VBox>
+
+            <!-- Footer -->
+            <VBox alignment="CENTER" spacing="5.0">
+               <Label styleClass="auth-subtitle" text="© 2024 Student Management Learning System" />
+               <Label styleClass="auth-subtitle" text="Secure • Reliable • User-Friendly" />
+            </VBox>
+         </VBox>
+      </StackPane>
+   </center>
+</BorderPane>

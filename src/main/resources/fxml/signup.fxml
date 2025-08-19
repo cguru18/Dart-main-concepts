@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.studentmanagement.controller.SignupController">
+   <center>
+      <StackPane styleClass="auth-container">
+         <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" vbarPolicy="AS_NEEDED">
+            <VBox fx:id="signupContainer" alignment="CENTER" maxWidth="450.0" spacing="25.0" styleClass="auth-form">
+               <padding>
+                  <Insets bottom="40.0" left="40.0" right="40.0" top="40.0" />
+               </padding>
+               
+               <!-- Header -->
+               <VBox alignment="CENTER" spacing="10.0">
+                  <Label styleClass="auth-title" text="Create Student Account" textAlignment="CENTER" />
+                  <Label styleClass="auth-subtitle" text="Join our learning management system" textAlignment="CENTER" wrapText="true" />
+               </VBox>
+
+               <!-- Signup Form -->
+               <VBox spacing="20.0">
+                  <!-- Admission Number Field -->
+                  <VBox spacing="8.0" styleClass="form-field">
+                     <Label styleClass="field-label" text="Admission Number *" />
+                     <TextField fx:id="admissionNumberField" promptText="e.g., STD001234" styleClass="custom-text-field" />
+                     <Label styleClass="info-message" text="6-20 alphanumeric characters" />
+                  </VBox>
+
+                  <!-- Email Field -->
+                  <VBox spacing="8.0" styleClass="form-field">
+                     <Label styleClass="field-label" text="Email Address *" />
+                     <TextField fx:id="emailField" promptText="student@example.com" styleClass="custom-text-field" />
+                     <Label styleClass="info-message" text="Valid email address required" />
+                  </VBox>
+
+                  <!-- Full Name Field -->
+                  <VBox spacing="8.0" styleClass="form-field">
+                     <Label styleClass="field-label" text="Full Name *" />
+                     <TextField fx:id="fullNameField" promptText="Enter your full name" styleClass="custom-text-field" />
+                     <Label styleClass="info-message" text="First and last name as per official records" />
+                  </VBox>
+
+                  <!-- Password Field -->
+                  <VBox spacing="8.0" styleClass="form-field">
+                     <Label styleClass="field-label" text="Password *" />
+                     <PasswordField fx:id="passwordField" promptText="Create a strong password" styleClass="custom-password-field" />
+                     <Label styleClass="info-message" text="Minimum 8 characters with letters and numbers" />
+                  </VBox>
+
+                  <!-- Confirm Password Field -->
+                  <VBox spacing="8.0" styleClass="form-field">
+                     <Label styleClass="field-label" text="Confirm Password *" />
+                     <PasswordField fx:id="confirmPasswordField" promptText="Re-enter your password" styleClass="custom-password-field" />
+                  </VBox>
+
+                  <!-- Error/Success Messages -->
+                  <Label fx:id="errorLabel" styleClass="error-message" textAlignment="CENTER" visible="false" wrapText="true" />
+                  <Label fx:id="successLabel" styleClass="success-message" textAlignment="CENTER" visible="false" wrapText="true" />
+
+                  <!-- Loading Indicator -->
+                  <ProgressIndicator fx:id="loadingIndicator" maxHeight="30.0" maxWidth="30.0" visible="false" />
+               </VBox>
+
+               <!-- Buttons -->
+               <VBox spacing="15.0">
+                  <Button fx:id="signupButton" maxWidth="Infinity" styleClass="primary-button" text="Create Account" />
+                  <Button fx:id="backToLoginButton" maxWidth="Infinity" styleClass="secondary-button" text="Already have an account? Sign In" />
+               </VBox>
+
+               <!-- Footer -->
+               <VBox alignment="CENTER" spacing="5.0">
+                  <Label styleClass="auth-subtitle" text="By creating an account, you agree to our terms of service" />
+                  <Label styleClass="auth-subtitle" text="© 2024 Student Management Learning System" />
+               </VBox>
+            </VBox>
+         </ScrollPane>
+      </StackPane>
+   </center>
+</BorderPane>

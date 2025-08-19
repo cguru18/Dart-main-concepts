@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.studentmanagement.controller.TeacherDashboardController">
+   <top>
+      <!-- Navigation Bar -->
+      <HBox alignment="CENTER_LEFT" spacing="20.0" styleClass="nav-bar">
+         <Label styleClass="nav-title" text="Teacher Dashboard" />
+         <Region HBox.hgrow="ALWAYS" />
+         <VBox alignment="CENTER_RIGHT" spacing="2.0">
+            <Label fx:id="welcomeLabel" styleClass="nav-user-info" text="Welcome, Teacher" />
+            <Label fx:id="roleLabel" styleClass="nav-user-info" text="Teacher Portal" />
+         </VBox>
+      </HBox>
+   </top>
+
+   <left>
+      <!-- Sidebar Navigation -->
+      <VBox fx:id="sidebar" spacing="5.0" styleClass="sidebar">
+         <Button fx:id="overviewButton" maxWidth="Infinity" styleClass="sidebar-item" text="📊 Overview" />
+         <Button fx:id="examsButton" maxWidth="Infinity" styleClass="sidebar-item" text="📝 Exam Management" />
+         <Button fx:id="studentsButton" maxWidth="Infinity" styleClass="sidebar-item" text="👥 Student Results" />
+         <Button fx:id="reportsButton" maxWidth="Infinity" styleClass="sidebar-item" text="📄 Generate Reports" />
+         
+         <Region VBox.vgrow="ALWAYS" />
+         
+         <Separator />
+         <Button fx:id="logoutButton" maxWidth="Infinity" styleClass="sidebar-item" text="🚪 Logout" />
+      </VBox>
+   </left>
+
+   <center>
+      <!-- Main Content Area -->
+      <StackPane fx:id="contentArea" styleClass="content-area">
+         
+         <!-- Overview Section -->
+         <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" vbarPolicy="AS_NEEDED">
+            <VBox fx:id="overviewSection" spacing="25.0">
+               
+               <!-- Overview Header -->
+               <VBox spacing="10.0" styleClass="card-header">
+                  <Label styleClass="card-title-white" text="Teacher Dashboard Overview" />
+                  <Label styleClass="card-title-white" text="Manage examinations and monitor student performance" />
+               </VBox>
+
+               <!-- Statistics Cards -->
+               <GridPane hgap="20.0" vgap="20.0" styleClass="grid-container">
+                  <columnConstraints>
+                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                  </columnConstraints>
+                  
+                  <VBox alignment="CENTER" spacing="10.0" styleClass="stats-card" GridPane.columnIndex="0">
+                     <Label fx:id="totalStudentsLabel" styleClass="stats-number" text="0" />
+                     <Label styleClass="stats-label" text="Total Students" />
+                  </VBox>
+                  
+                  <VBox alignment="CENTER" spacing="10.0" styleClass="stats-card" GridPane.columnIndex="1">
+                     <Label fx:id="totalExamsLabel" styleClass="stats-number" text="0" />
+                     <Label styleClass="stats-label" text="Total Exams" />
+                  </VBox>
+                  
+                  <VBox alignment="CENTER" spacing="10.0" styleClass="stats-card" GridPane.columnIndex="2">
+                     <Label fx:id="totalSubjectsLabel" styleClass="stats-number" text="0" />
+                     <Label styleClass="stats-label" text="Total Subjects" />
+                  </VBox>
+                  
+                  <VBox alignment="CENTER" spacing="10.0" styleClass="stats-card" GridPane.columnIndex="3">
+                     <Label fx:id="averagePerformanceLabel" styleClass="stats-number" text="0%" />
+                     <Label styleClass="stats-label" text="Avg Performance" />
+                  </VBox>
+               </GridPane>
+
+               <!-- Quick Actions -->
+               <VBox spacing="15.0" styleClass="card">
+                  <Label styleClass="card-title" text="Quick Actions" />
+                  <HBox spacing="15.0">
+                     <Button styleClass="primary-button" text="Create New Exam" onAction="#showExamManagementSection" />
+                     <Button styleClass="secondary-button" text="View Student Results" onAction="#showStudentResultsSection" />
+                     <Button styleClass="secondary-button" text="Generate Reports" onAction="#generateClassReport" />
+                  </HBox>
+               </VBox>
+            </VBox>
+         </ScrollPane>
+
+         <!-- Exam Management Section -->
+         <VBox fx:id="examManagementSection" spacing="25.0" visible="false">
+            
+            <!-- Exam Creation Form -->
+            <VBox spacing="20.0" styleClass="card">
+               <VBox spacing="10.0" styleClass="card-header">
+                  <Label styleClass="card-title-white" text="Create New Examination" />
+               </VBox>
+               
+               <GridPane hgap="20.0" vgap="15.0">
+                  <columnConstraints>
+                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                  </columnConstraints>
+                  
+                  <VBox spacing="8.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                     <Label styleClass="field-label" text="Subject" />
+                     <ComboBox fx:id="subjectComboBox" maxWidth="Infinity" promptText="Select subject" />
+                  </VBox>
+                  
+                  <VBox spacing="8.0" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                     <Label styleClass="field-label" text="Exam Type" />
+                     <ComboBox fx:id="examTypeComboBox" maxWidth="Infinity" promptText="Select exam type" />
+                  </VBox>
+                  
+                  <VBox spacing="8.0" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                     <Label styleClass="field-label" text="Exam Name" />
+                     <TextField fx:id="examNameField" promptText="e.g., Mid Term Exam" styleClass="custom-text-field" />
+                  </VBox>
+                  
+                  <VBox spacing="8.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <Label styleClass="field-label" text="Max Marks" />
+                     <TextField fx:id="maxMarksField" promptText="100" styleClass="custom-text-field" />
+                  </VBox>
+                  
+                  <VBox spacing="8.0" GridPane.columnIndex="0" GridPane.rowIndex="2">
+                     <Label styleClass="field-label" text="Exam Date" />
+                     <DatePicker fx:id="examDatePicker" maxWidth="Infinity" />
+                  </VBox>
+                  
+                  <VBox spacing="8.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                     <Region />
+                     <Button fx:id="createExamButton" styleClass="primary-button" text="Create Examination" />
+                  </VBox>
+               </GridPane>
+            </VBox>
+
+            <!-- Existing Exams Table -->
+            <VBox spacing="15.0" styleClass="card">
+               <Label styleClass="card-title" text="Existing Examinations" />
+               <TableView fx:id="examsTable" styleClass="table-view">
+                  <columns>
+                     <TableColumn fx:id="examSubjectColumn" prefWidth="150.0" text="Subject" />
+                     <TableColumn fx:id="examNameColumn" prefWidth="200.0" text="Exam Name" />
+                     <TableColumn fx:id="examTypeColumn" prefWidth="150.0" text="Type" />
+                     <TableColumn fx:id="examDateColumn" prefWidth="120.0" text="Date" />
+                     <TableColumn fx:id="maxMarksColumn" prefWidth="100.0" text="Max Marks" />
+                  </columns>
+               </TableView>
+            </VBox>
+         </VBox>
+
+         <!-- Student Results Section -->
+         <VBox fx:id="studentResultsSection" spacing="25.0" visible="false">
+            
+            <!-- Results Header -->
+            <VBox spacing="10.0" styleClass="card-header">
+               <Label styleClass="card-title-white" text="Student Examination Results" />
+               <Label styleClass="card-title-white" text="View and manage student performance" />
+            </VBox>
+
+            <!-- Exam Selection -->
+            <VBox spacing="15.0" styleClass="card">
+               <Label styleClass="card-title" text="Select Examination" />
+               <ComboBox fx:id="examSelectionComboBox" maxWidth="400.0" promptText="Choose an examination to view results" />
+            </VBox>
+
+            <!-- Results Table -->
+            <VBox spacing="15.0" styleClass="card">
+               <HBox alignment="CENTER_LEFT" spacing="20.0">
+                  <Label styleClass="card-title" text="Student Results" />
+                  <Region HBox.hgrow="ALWAYS" />
+                  <Button styleClass="primary-button" text="Export Results" onAction="#generateClassReport" />
+               </HBox>
+               
+               <TableView fx:id="resultsTable" styleClass="table-view">
+                  <columns>
+                     <TableColumn fx:id="studentNameColumn" prefWidth="200.0" text="Student Name" />
+                     <TableColumn fx:id="admissionColumn" prefWidth="150.0" text="Admission No." />
+                     <TableColumn fx:id="marksColumn" prefWidth="100.0" text="Marks" />
+                     <TableColumn fx:id="gradeColumn" prefWidth="80.0" text="Grade" />
+                     <TableColumn fx:id="positionColumn" prefWidth="80.0" text="Position" />
+                  </columns>
+               </TableView>
+            </VBox>
+         </VBox>
+
+      </StackPane>
+   </center>
+</BorderPane>
