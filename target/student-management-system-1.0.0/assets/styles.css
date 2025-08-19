@@ -1,0 +1,113 @@
+:root{
+  --grey:#808080;
+  --black:#0d0d0d;
+  --white:#ffffff;
+  --lilac:#c8a2c8;
+  --burgundy:#800020;
+}
+
+html,body{
+  margin:0;
+  padding:0;
+  font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  color:var(--white);
+  background: linear-gradient(135deg, var(--black), #1b1b1b 40%, var(--grey));
+}
+
+.app-shell{
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+}
+
+.topbar{
+  background: linear-gradient(90deg, var(--burgundy), var(--lilac));
+  padding:12px 16px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.brand{
+  font-weight:700;
+  letter-spacing:0.5px;
+}
+
+.container{
+  width:100%;
+  max-width:1100px;
+  margin:0 auto;
+  padding:16px;
+}
+
+.card{
+  background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:12px;
+  padding:16px;
+  box-shadow:0 6px 24px rgba(0,0,0,0.25);
+}
+
+.grid{
+  display:grid;
+  gap:16px;
+}
+
+.grid-2{
+  grid-template-columns:repeat(2, 1fr);
+}
+
+.grid-3{
+  grid-template-columns:repeat(3, 1fr);
+}
+
+@media (max-width: 768px){
+  .grid-2, .grid-3{ grid-template-columns:1fr; }
+}
+
+.flex{
+  display:flex;
+  gap:12px;
+}
+
+.flex-col{ flex-direction:column; }
+.flex-wrap{ flex-wrap:wrap; }
+.justify-between{ justify-content:space-between; }
+.items-center{ align-items:center; }
+
+label{ font-size:0.95rem; }
+input, select, button{
+  padding:10px 12px;
+  border-radius:10px;
+  border:1px solid rgba(255,255,255,0.15);
+  background:rgba(255,255,255,0.06);
+  color:var(--white);
+}
+
+button.primary{
+  background: linear-gradient(90deg, var(--lilac), var(--burgundy));
+  border:none;
+  cursor:pointer;
+}
+button.primary:hover{ filter:brightness(1.05); }
+
+.table{
+  width:100%;
+  border-collapse:collapse;
+}
+.table th, .table td{
+  border-bottom:1px solid rgba(255,255,255,0.12);
+  padding:10px;
+  text-align:left;
+}
+.table th{
+  color:var(--lilac);
+}
+
+.badge{
+  display:inline-block;
+  padding:4px 8px;
+  border-radius:999px;
+  background:rgba(200,162,200,0.15);
+  border:1px solid rgba(200,162,200,0.4);
+}
