@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.studentmanagement.controller.AdminDashboardController">
+   <top>
+      <!-- Navigation Bar -->
+      <HBox alignment="CENTER_LEFT" spacing="20.0" styleClass="nav-bar">
+         <Label styleClass="nav-title" text="Admin Dashboard" />
+         <Region HBox.hgrow="ALWAYS" />
+         <VBox alignment="CENTER_RIGHT" spacing="2.0">
+            <Label fx:id="welcomeLabel" styleClass="nav-user-info" text="Welcome, Administrator" />
+            <Label fx:id="roleLabel" styleClass="nav-user-info" text="System Administrator" />
+         </VBox>
+      </HBox>
+   </top>
+
+   <left>
+      <!-- Sidebar Navigation -->
+      <VBox fx:id="sidebar" spacing="5.0" styleClass="sidebar">
+         <Button fx:id="overviewButton" maxWidth="Infinity" styleClass="sidebar-item" text="📊 System Overview" />
+         <Button fx:id="usersButton" maxWidth="Infinity" styleClass="sidebar-item" text="👥 User Management" />
+         <Button fx:id="subjectsButton" maxWidth="Infinity" styleClass="sidebar-item" text="📚 Subject Management" />
+         <Button fx:id="examsButton" maxWidth="Infinity" styleClass="sidebar-item" text="📝 Exam Management" />
+         <Button fx:id="reportsButton" maxWidth="Infinity" styleClass="sidebar-item" text="📄 System Reports" />
+         
+         <Region VBox.vgrow="ALWAYS" />
+         
+         <Separator />
+         <Button fx:id="logoutButton" maxWidth="Infinity" styleClass="sidebar-item" text="🚪 Logout" />
+      </VBox>
+   </left>
+
+   <center>
+      <!-- Main Content Area -->
+      <StackPane fx:id="contentArea" styleClass="content-area">
+         
+         <!-- Overview Section -->
+         <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" vbarPolicy="AS_NEEDED">
+            <VBox fx:id="overviewSection" spacing="25.0">
+               
+               <!-- Overview Header -->
+               <VBox spacing="10.0" styleClass="card-header">
+                  <Label styleClass="card-title-white" text="System Overview" />
+                  <Label styleClass="card-title-white" text="Monitor system-wide statistics and performance" />
+               </VBox>
+
+               <!-- Statistics Cards -->
+               <GridPane hgap="20.0" vgap="20.0" styleClass="grid-container">
+                  <columnConstraints>
+                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                  </columnConstraints>
+                  
+                  <VBox alignment="CENTER" spacing="10.0" styleClass="stats-card" GridPane.columnIndex="0">
+                     <Label fx:id="totalStudentsLabel" styleClass="stats-number" text="0" />
+                     <Label styleClass="stats-label" text="Total Students" />
+                  </VBox>
+                  
+                  <VBox alignment="CENTER" spacing="10.0" styleClass="stats-card" GridPane.columnIndex="1">
+                     <Label fx:id="totalTeachersLabel" styleClass="stats-number" text="0" />
+                     <Label styleClass="stats-label" text="Total Teachers" />
+                  </VBox>
+                  
+                  <VBox alignment="CENTER" spacing="10.0" styleClass="stats-card" GridPane.columnIndex="2">
+                     <Label fx:id="totalSubjectsLabel" styleClass="stats-number" text="0" />
+                     <Label styleClass="stats-label" text="Total Subjects" />
+                  </VBox>
+                  
+                  <VBox alignment="CENTER" spacing="10.0" styleClass="stats-card" GridPane.columnIndex="3">
+                     <Label fx:id="totalExamsLabel" styleClass="stats-number" text="0" />
+                     <Label styleClass="stats-label" text="Total Exams" />
+                  </VBox>
+               </GridPane>
+
+               <!-- System Health -->
+               <VBox spacing="15.0" styleClass="card">
+                  <Label styleClass="card-title" text="System Health" />
+                  <HBox alignment="CENTER_LEFT" spacing="15.0">
+                     <Label text="Database Status:" />
+                     <Region styleClass="status-active" />
+                     <Label text="Connected" />
+                     
+                     <Region HBox.hgrow="ALWAYS" />
+                     
+                     <Label text="System Status:" />
+                     <Region styleClass="status-active" />
+                     <Label text="Online" />
+                  </HBox>
+               </VBox>
+            </VBox>
+         </ScrollPane>
+
+         <!-- User Management Section -->
+         <VBox fx:id="userManagementSection" spacing="25.0" visible="false">
+            
+            <!-- Create User Form -->
+            <VBox spacing="20.0" styleClass="card">
+               <VBox spacing="10.0" styleClass="card-header">
+                  <Label styleClass="card-title-white" text="Create New User" />
+               </VBox>
+               
+               <GridPane hgap="20.0" vgap="15.0">
+                  <columnConstraints>
+                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                  </columnConstraints>
+                  
+                  <VBox spacing="8.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                     <Label styleClass="field-label" text="Admission Number" />
+                     <TextField fx:id="newUserAdmissionField" promptText="e.g., TCH001" styleClass="custom-text-field" />
+                  </VBox>
+                  
+                  <VBox spacing="8.0" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                     <Label styleClass="field-label" text="Email" />
+                     <TextField fx:id="newUserEmailField" promptText="user@school.edu" styleClass="custom-text-field" />
+                  </VBox>
+                  
+                  <VBox spacing="8.0" GridPane.columnIndex="2" GridPane.rowIndex="0">
+                     <Label styleClass="field-label" text="Role" />
+                     <ComboBox fx:id="newUserRoleComboBox" maxWidth="Infinity" promptText="Select role" />
+                  </VBox>
+                  
+                  <VBox spacing="8.0" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                     <Label styleClass="field-label" text="Full Name" />
+                     <TextField fx:id="newUserNameField" promptText="Full name" styleClass="custom-text-field" />
+                  </VBox>
+                  
+                  <VBox spacing="8.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <Label styleClass="field-label" text="Password" />
+                     <PasswordField fx:id="newUserPasswordField" promptText="Temporary password" styleClass="custom-password-field" />
+                  </VBox>
+                  
+                  <VBox spacing="8.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                     <Region />
+                     <Button fx:id="createUserButton" styleClass="primary-button" text="Create User" />
+                  </VBox>
+               </GridPane>
+            </VBox>
+
+            <!-- Users Table -->
+            <VBox spacing="15.0" styleClass="card">
+               <Label styleClass="card-title" text="System Users" />
+               <TableView fx:id="usersTable" styleClass="table-view">
+                  <columns>
+                     <TableColumn fx:id="userNameColumn" prefWidth="200.0" text="Full Name" />
+                     <TableColumn fx:id="userAdmissionColumn" prefWidth="150.0" text="Admission No." />
+                     <TableColumn fx:id="userEmailColumn" prefWidth="200.0" text="Email" />
+                     <TableColumn fx:id="userRoleColumn" prefWidth="100.0" text="Role" />
+                     <TableColumn fx:id="userStatusColumn" prefWidth="100.0" text="Status" />
+                  </columns>
+               </TableView>
+               <Label styleClass="info-message" text="Right-click on a user to access management options" />
+            </VBox>
+         </VBox>
+
+         <!-- System Reports Section -->
+         <VBox fx:id="reportsSection" spacing="25.0" visible="false">
+            
+            <!-- Reports Header -->
+            <VBox spacing="10.0" styleClass="card-header">
+               <Label styleClass="card-title-white" text="System Reports" />
+               <Label styleClass="card-title-white" text="Generate comprehensive system reports" />
+            </VBox>
+
+            <!-- Report Generation -->
+            <VBox spacing="20.0" styleClass="card">
+               <Label styleClass="card-title" text="Generate System Report" />
+               
+               <HBox alignment="CENTER_LEFT" spacing="20.0">
+                  <VBox spacing="8.0">
+                     <Label styleClass="field-label" text="Report Type" />
+                     <ComboBox fx:id="reportTypeComboBox" minWidth="300.0" promptText="Select report type" />
+                  </VBox>
+                  
+                  <Region HBox.hgrow="ALWAYS" />
+                  
+                  <VBox alignment="CENTER" spacing="10.0">
+                     <Button fx:id="generateSystemReportButton" styleClass="primary-button" text="Generate Report" />
+                     <ProgressIndicator fx:id="reportProgress" maxHeight="25.0" maxWidth="25.0" visible="false" />
+                  </VBox>
+               </HBox>
+               
+               <Label styleClass="info-message" text="Reports will be saved to your Downloads folder" />
+            </VBox>
+
+            <!-- Recent Activity -->
+            <VBox spacing="15.0" styleClass="card">
+               <Label styleClass="card-title" text="Recent System Activity" />
+               <VBox spacing="10.0">
+                  <HBox alignment="CENTER_LEFT" spacing="10.0">
+                     <Region styleClass="status-active" />
+                     <Label text="New student registration: STD12345" />
+                     <Region HBox.hgrow="ALWAYS" />
+                     <Label styleClass="auth-subtitle" text="2 hours ago" />
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" spacing="10.0">
+                     <Region styleClass="status-active" />
+                     <Label text="Examination created: Mathematics Mid-Term" />
+                     <Region HBox.hgrow="ALWAYS" />
+                     <Label styleClass="auth-subtitle" text="5 hours ago" />
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" spacing="10.0">
+                     <Region styleClass="status-active" />
+                     <Label text="Teacher account created: TCH002" />
+                     <Region HBox.hgrow="ALWAYS" />
+                     <Label styleClass="auth-subtitle" text="1 day ago" />
+                  </HBox>
+               </VBox>
+            </VBox>
+         </VBox>
+
+      </StackPane>
+   </center>
+</BorderPane>

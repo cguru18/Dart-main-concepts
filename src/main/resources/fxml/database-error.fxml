@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+   <center>
+      <StackPane styleClass="auth-container">
+         <VBox alignment="CENTER" maxWidth="500.0" spacing="25.0" styleClass="auth-form">
+            <padding>
+               <Insets bottom="40.0" left="40.0" right="40.0" top="40.0" />
+            </padding>
+            
+            <!-- Header -->
+            <VBox alignment="CENTER" spacing="15.0">
+               <Label styleClass="auth-title" text="Database Connection Error" textAlignment="CENTER" />
+               <Label styleClass="error-message" text="⚠️ Unable to connect to the database" textAlignment="CENTER" />
+            </VBox>
+
+            <!-- Error Details -->
+            <VBox spacing="15.0">
+               <Label styleClass="auth-subtitle" text="Please ensure that:" textAlignment="CENTER" wrapText="true" />
+               
+               <VBox spacing="8.0">
+                  <Label text="✓ XAMPP is installed and running" />
+                  <Label text="✓ MySQL service is started in XAMPP" />
+                  <Label text="✓ Database 'student_management_db' exists" />
+                  <Label text="✓ Run the database_setup.sql script" />
+               </VBox>
+            </VBox>
+
+            <!-- Instructions -->
+            <VBox spacing="15.0">
+               <Label styleClass="auth-subtitle" text="Setup Instructions:" textAlignment="CENTER" />
+               
+               <VBox spacing="5.0">
+                  <Label text="1. Start XAMPP Control Panel" />
+                  <Label text="2. Start Apache and MySQL services" />
+                  <Label text="3. Open phpMyAdmin (http://localhost/phpmyadmin)" />
+                  <Label text="4. Import the database_setup.sql file" />
+                  <Label text="5. Restart this application" />
+               </VBox>
+            </VBox>
+
+            <!-- Buttons -->
+            <VBox spacing="15.0">
+               <Button maxWidth="Infinity" styleClass="primary-button" text="Retry Connection" onAction="#retryConnection" />
+               <Button maxWidth="Infinity" styleClass="secondary-button" text="Exit Application" onAction="#exitApplication" />
+            </VBox>
+
+            <!-- Footer -->
+            <Label styleClass="auth-subtitle" text="Need help? Check the README.md file for detailed setup instructions" textAlignment="CENTER" wrapText="true" />
+         </VBox>
+      </StackPane>
+   </center>
+</BorderPane>
